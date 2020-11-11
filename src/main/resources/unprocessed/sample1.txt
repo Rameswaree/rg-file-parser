@@ -1,0 +1,7 @@
+This is a sample file. With this file, we are going to test if file parsing is happening. In this process, the number of words, the number of dots and the maximum number of words
+are going to be calculated.
+Once it is calculated, it will have to be printed on the console.
+
+In future, this file can be used to calculate the number of special characters, paragraphs and so on.
+
+This is sample text file 1.
