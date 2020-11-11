@@ -1,12 +1,15 @@
 package com.parser.file;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.parser.file.service.FileParserServiceImpl;
 
-@SpringBootApplication
 public class FileParserApplication {
 
     public static void main(String[] args){
-        SpringApplication.run(FileParserApplication.class, args);
+        FileParserServiceImpl fileParserService = new FileParserServiceImpl();
+        boolean isFileParsed = fileParserService.getFileParsed();
+
+        if(isFileParsed){
+            System.out.println("File has been successfully parsed");
+        }
     }
 }
