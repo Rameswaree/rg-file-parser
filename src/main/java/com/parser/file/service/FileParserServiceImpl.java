@@ -1,15 +1,18 @@
 package com.parser.file.service;
 
 import com.parser.file.parsers.TextFileParser;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileParserServiceImpl {
 
-    private static final String PATH = "src/main/resources/unprocessed";
+    private static final String ORIGINAL_PATH = "src/main/resources/unprocessed";
+    private static final String NEW_PATH = "src/main/resources/processed";
 
     TextFileParser textFileParser = new TextFileParser();
     public boolean getFileParsed(){
@@ -17,10 +20,13 @@ public class FileParserServiceImpl {
         boolean fileParsed = true;
 
         try{
-                File[] filesList = (File[]) Files.list(Paths.get(PATH)).toArray();
+                Object[] filesList = Files.list(Paths.get(ORIGINAL_PATH)).toArray();
 
-                for(File file:filesList){
+                for(Object file:filesList){
                     String name = textFileParser.processedFileName(String.valueOf(file));
+
+                    System.out.println();
+
                     if(name.isEmpty()){
                         return false;
                     }

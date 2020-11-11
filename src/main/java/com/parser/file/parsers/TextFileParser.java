@@ -15,9 +15,9 @@ public class TextFileParser {
 
     public String processedFileName(String fileName){
 
-        System.out.println("Number of words: " + numberOfWords(fileName));
-        System.out.println("Number of dots: " + numberOfDots(fileName));
-        System.out.println("Most used words: " + mostUsedWords(fileName));
+        System.out.println("Number of words in " + fileName + ": " + numberOfWords(fileName));
+        System.out.println("Number of dots in " + fileName + ": " + numberOfDots(fileName));
+        System.out.println("Most used words in " + fileName + ": " + mostUsedWords(fileName));
 
         return fileName;
     }
@@ -33,10 +33,10 @@ public class TextFileParser {
         Map<String, Integer> hashMap = new HashMap<>();
 
         if(fileLines != null){
-            String[] words = (String[]) fileLines.flatMap(line -> Arrays.stream(line.split(" "))).toArray();
+            Object[] words = (Object[]) fileLines.flatMap(line -> Arrays.stream(line.split(" "))).toArray();
 
-            for(String word:words){
-                hashMap.put(word, hashMap.getOrDefault(word, 0) + 1);
+            for(Object word:words){
+                hashMap.put((String) word, hashMap.getOrDefault(word, 0) + 1);
             }
         }
 
@@ -46,8 +46,7 @@ public class TextFileParser {
 
     public int numberOfDots(String fileName) {
 
-        int totalWords = numberOfWords(fileName);
-        int wordsWithoutDots = 0;
+        int dotCount = 0;
         Path path = Paths.get(fileName);
         Stream<String> fileLines = null;
         try {
@@ -56,10 +55,10 @@ public class TextFileParser {
             e.printStackTrace();
         }
         if(fileLines !=null)
-            wordsWithoutDots = (int) fileLines.flatMap(line -> Arrays.stream(new String[]{line.replaceAll("[.]", "")})).count();
+            dotCount = (int) fileLines.flatMap(line -> Arrays.stream(new String[]{line.replaceAll("[.]+", "")})).count();
 
 
-        return totalWords - wordsWithoutDots;
+        return dotCount;
     }
 
     public int numberOfWords(String fileName) {
