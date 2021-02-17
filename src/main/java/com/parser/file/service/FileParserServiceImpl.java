@@ -1,12 +1,9 @@
 package com.parser.file.service;
 
 import com.parser.file.parsers.TextFileParser;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileParserServiceImpl {

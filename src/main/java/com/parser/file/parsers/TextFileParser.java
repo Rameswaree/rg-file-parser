@@ -33,7 +33,7 @@ public class TextFileParser {
         Map<String, Integer> hashMap = new HashMap<>();
 
         if(fileLines != null){
-            Object[] words = (Object[]) fileLines.flatMap(line -> Arrays.stream(line.split(" "))).toArray();
+            Object[] words = fileLines.flatMap(line -> Arrays.stream(line.split(" "))).toArray();
 
             for(Object word:words){
                 hashMap.put((String) word, hashMap.getOrDefault(word, 0) + 1);
